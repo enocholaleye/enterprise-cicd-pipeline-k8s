@@ -1,0 +1,18 @@
+name: K8s CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build Docker image
+        run: docker build -t myapp:latest .
+      - name: Helm Lint & Deploy
+        run: |
+          helm lint helm/
+          helm upgrade --install myapp helm/ --namespace dev

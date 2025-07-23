@@ -1,0 +1,1 @@
+# Sample Dockerfile for CI/CD demo app
